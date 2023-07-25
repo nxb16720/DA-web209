@@ -5,7 +5,7 @@ import categoryRouter from "./routes/category";
 import authRouter from "./routes/auth";
 import mongoose from "mongoose";
 import cors from "cors";
-
+import cartRouter from "./routes/cart";
 dotenv.config();
 
 // khởi tạo
@@ -17,6 +17,7 @@ app.use(cors());
 app.use("/api", productRouter);
 app.use("/api", categoryRouter);
 app.use("/api", authRouter);
+app.use("/api", cartRouter);
 
 mongoose.connect(process.env.URI);
 
