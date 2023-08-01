@@ -1,8 +1,8 @@
-import React from 'react'
+type Props = {
+  item:any
+}
 
-type Props = {}
-
-const ProductItems = (props: Props) => {
+const ProductItem = ({item}: Props) => {
   return (
     <a href="#" className="group block">
         <div className="relative h-[350px] sm:h-[450px]">
@@ -23,7 +23,7 @@ const ProductItems = (props: Props) => {
             <h3
             className="text-sm text-gray-700 group-hover:underline group-hover:underline-offset-4"
             >
-            Small Headphones
+            {item?.name}
             </h3>
 
             <p className="mt-1.5 max-w-[40ch] text-xs text-gray-500">
@@ -35,4 +35,4 @@ const ProductItems = (props: Props) => {
   )
 }
 
-export default ProductItems
+export default ProductItem

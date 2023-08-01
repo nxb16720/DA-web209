@@ -1,6 +1,7 @@
 import {Navigate,createBrowserRouter} from 'react-router-dom'
 import LayoutClient from './layout/LayoutClient'
 import LayoutAdmin from './layout/LayoutAdmin'
+import ProductPage from './features/product/pages/ProductPage'
 export const routes = createBrowserRouter([
     {
         path:'/',
@@ -8,6 +9,7 @@ export const routes = createBrowserRouter([
         children:[
             {index:true,element: <div>Homepage</div>},
             {path:'about',element: <div>About</div>},
+            {path:'products',element: <ProductPage/>},
         ]
     },
     {
