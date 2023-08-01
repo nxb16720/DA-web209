@@ -1,13 +1,12 @@
 import './App.css'
+import {RouterProvider} from 'react-router-dom'
+import { routes } from './routes'
 
-import LayoutAdmin from './layout/LayoutAdmin'
-import LayoutClient from './layout/layoutClient'
 
 function App() {
   return (
     <div>
-      <LayoutAdmin/>
-
+      <RouterProvider router={routes}/>
     </div>
   )
 }

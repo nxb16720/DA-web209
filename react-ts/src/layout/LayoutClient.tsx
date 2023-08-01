@@ -1,4 +1,4 @@
-import React from 'react'
+import {Outlet} from 'react-router-dom'
 
 const LayoutClient = () => {
   return (
@@ -101,7 +101,7 @@ const LayoutClient = () => {
         </header>
 
         <main>
-            main
+            <Outlet/>
         </main>
 
         <footer className="bg-white">
