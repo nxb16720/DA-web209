@@ -1,4 +1,4 @@
-import React from 'react'
+import {Outlet} from 'react-router-dom'
 
 const LayoutAdmin = () => {
   return (
@@ -119,7 +119,7 @@ const LayoutAdmin = () => {
                 </div>
             </div>
         </div>
-        <div className="h-32 rounded-lg bg-gray-100 lg:col-span-2">main</div>
+        <div className="h-32 rounded-lg bg-gray-100 lg:col-span-2"><Outlet/></div>
     </div> 
   )
 }

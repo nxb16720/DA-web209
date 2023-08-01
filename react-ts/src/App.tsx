@@ -1,13 +1,11 @@
 import './App.css'
-import ProductList from './component/List'
-import LayoutAdmin from './layout/LayoutAdmin'
-import LayoutClient from './layout/layoutClient'
+import {RouterProvider} from 'react-router-dom'
+import { routes } from './routes'
 
 function App() {
   return (
     <div>
-      <LayoutAdmin/>
-      <ProductList/>
+      <RouterProvider router={routes}/>
     </div>
   )
 }
