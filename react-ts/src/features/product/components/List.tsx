@@ -1,20 +1,20 @@
-import { useEffect } from "react"
-import { useAppDispatch, useAppSelector } from "../../../app/hook"
+import Skeleton from "react-loading-skeleton";
+import { useGetProductsQuery } from "../../../api/productApi"
 import ProductItem from "./Item"
-import { fetchProduct } from "../productSlice"
-
 
 
 const ProductList = () => {
-    const dispatch = useAppDispatch()
-    const {items,isLoading,error} = useAppSelector((state:any)=>state.products)
 
-    useEffect(()=>{
-        dispatch(fetchProduct())
-    },[])
-    console.log(items);
+    const {data:items,isLoading,error} = useGetProductsQuery()
 
-    
+    if (isLoading) return <Skeleton count={3} height={35} />;
+    if (error) {
+        if ('data' in error && 'status' in error) {
+            return (
+                <div>{error.status}-{JSON.stringify(error.data)}</div>
+            )
+        }
+    };
     return (
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-4 lg:gap-8">
         {items?.map((item:any)=>{
