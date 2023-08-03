@@ -11,7 +11,10 @@ import {
     persistStore,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import { productReducer } from "../features/product/productSlice";
+
+import productApi, { productReducer } from "../api/productApi";
+import categoryApi, { categoryReducer } from "../api/categoryApi";
+
 
 const persistConfig = {
     key: 'root',
@@ -20,6 +23,9 @@ const persistConfig = {
 }
 const rootReducer = combineReducers({
     products: productReducer,
+
+    category:categoryReducer
+
     // counter: counterReducer,
     // cart: cartReducer
 })
@@ -32,7 +38,9 @@ export const store = configureStore({
             serializableCheck: {
                 ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
             },
-        })
+
+        }).concat(productApi.middleware,categoryApi.middleware)
+
 })
 
 export type AppDispatch = typeof store.dispatch

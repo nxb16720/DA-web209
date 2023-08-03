@@ -2,6 +2,11 @@ import {Navigate,createBrowserRouter} from 'react-router-dom'
 import LayoutClient from './layout/LayoutClient'
 import LayoutAdmin from './layout/LayoutAdmin'
 import ProductPage from './features/product/pages/ProductPage'
+
+import Dashboard from './features/product/pages/Dashboard'
+import ProductManagement from './features/product/pages/ProductManagement'
+import CategoryManagement from './features/category/pages/CategoryManagement'
+
 export const routes = createBrowserRouter([
     {
         path:'/',
@@ -17,8 +22,10 @@ export const routes = createBrowserRouter([
         element:<LayoutAdmin/>,
         children:[
             {index:true,element: <Navigate to='dashboard'/>},
-            {path:'dashboard',element:<div>Dashboard page</div>},
-            {path:'products',element:<div>Product management page</div>},
+            {path:'dashboard',element:<Dashboard/>},
+            {path:'products',element:<ProductManagement/>},
+            {path:'category',element:<CategoryManagement/>},
+            
         ]
     },
     {path:"*",element:<div>Not Found Page</div>}

@@ -13,9 +13,9 @@ const Button = ({ type, icon, children, onClick }: ButtonProps) => {
     return (
         <button
             onClick={onClick}
-            className={`p-2 border border-gray-400 rounded
-                        ${type == "primary" && "bg-blue-500 text-white"}
-                        ${type == "danger" && "bg-red-500 text-white"}
+            className={`inline-block rounded  px-4 py-2 text-xs font-medium  text-white
+                        ${type == "primary" && "bg-indigo-600 hover:bg-indigo-700"}
+                        ${type == "danger" && "bg-red-500 hover:bg-red-600 "}
         `}
         >
             {icon && icon}
