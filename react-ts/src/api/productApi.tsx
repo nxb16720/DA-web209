@@ -1,3 +1,4 @@
+
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
 interface IProduct {
     id?: number,
@@ -48,3 +49,4 @@ const productApi = createApi({
 export const { useGetProductsQuery, useAddProductMutation, useUpdateProductMutation, useRemoveProductMutation } = productApi;
 export const productReducer = productApi.reducer;
 export default productApi;
+

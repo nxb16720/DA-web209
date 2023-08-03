@@ -1,3 +1,4 @@
+
 {
   "products": [
     {
@@ -5,10 +6,12 @@
       "name": "product A",
       "price": 100,
       "categoryId":1
+
     },
     {
       "id": 2,
       "name": "product B",
+
       "price": 200,
       "categoryId":1
     },
@@ -44,6 +47,7 @@
       "id": 3,
       "name": "Category C"
     }
+
   ],
   "carts": []
 }
