@@ -1,10 +1,12 @@
+import { Link } from "react-router-dom"
+
 type Props = {
   item:any
 }
 
 const ProductItem = ({item}: Props) => {
   return (
-    <a href="#" className="group block">
+    <Link to={`${item?.id}`} className="group block">
         <div className="relative h-[350px] sm:h-[450px]">
             <img
             src="https://images.unsplash.com/photo-1592921870789-04563d55041c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
@@ -31,7 +33,7 @@ const ProductItem = ({item}: Props) => {
             ab maiores placeat odio id?
             </p>
         </div>
-    </a>
+    </Link>
   )
 }
 

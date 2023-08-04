@@ -14,7 +14,7 @@ const categoryApi = createApi({
             query: () => `/category/?_embed=products`,
             providesTags: ['Category']
         }),
-        getCategoryById: builder.query<ICategory, number>({
+        getCategoryById: builder.query<any, number|string|undefined>({
             query: (id) => `/category/${id}/?_embed=products`,
             providesTags: ['Category']
         }),
@@ -44,6 +44,6 @@ const categoryApi = createApi({
     })
 });
 
-export const { useGetCategoriesQuery, useAddCategoryMutation, useUpdateCategoryMutation, useRemoveCategoryMutation } = categoryApi;
+export const { useGetCategoriesQuery,useGetCategoryByIdQuery, useAddCategoryMutation, useUpdateCategoryMutation, useRemoveCategoryMutation } = categoryApi;
 export const categoryReducer = categoryApi.reducer;
 export default categoryApi;

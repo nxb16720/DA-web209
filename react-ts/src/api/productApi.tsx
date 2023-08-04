@@ -16,7 +16,7 @@ const productApi = createApi({
             query: () => `/products`,
             providesTags: ['Product']
         }),
-        getProductById: builder.query<IProduct, number>({
+        getProductById: builder.query<IProduct, number|string|undefined>({
             query: (id) => `/products/${id}`,
             providesTags: ['Product']
         }),
@@ -46,7 +46,7 @@ const productApi = createApi({
     })
 });
 
-export const { useGetProductsQuery, useAddProductMutation, useUpdateProductMutation, useRemoveProductMutation } = productApi;
+export const { useGetProductsQuery,useGetProductByIdQuery ,useAddProductMutation, useUpdateProductMutation, useRemoveProductMutation } = productApi;
 export const productReducer = productApi.reducer;
 export default productApi;
 

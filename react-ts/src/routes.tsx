@@ -7,14 +7,20 @@ import Dashboard from './features/product/pages/Dashboard'
 import ProductManagement from './features/product/pages/ProductManagement'
 import CategoryManagement from './features/category/pages/CategoryManagement'
 
+import ProductDetail from './features/product/pages/ProductDetail'
+import CategoryDetail from './features/category/pages/CategoryDetail'
+import HomePage from './features/home/page/HomePage'
+
 export const routes = createBrowserRouter([
     {
         path:'/',
         element:<LayoutClient/>,
         children:[
-            {index:true,element: <div>Homepage</div>},
+            {index:true,element: <HomePage/>},
             {path:'about',element: <div>About</div>},
             {path:'products',element: <ProductPage/>},
+            {path:'products/:id',element: <ProductDetail/>},
+            {path:'/:id/category',element: <CategoryDetail/>},
         ]
     },
     {
