@@ -1,6 +1,14 @@
 import {Outlet ,Link} from 'react-router-dom'
 import DropdownCate from '../features/category/components/Dropdown'
+import { Carousel } from 'antd';
 
+const contentStyle: React.CSSProperties = {
+    height: '160px',
+    color: '#fff',
+    lineHeight: '160px',
+    textAlign: 'center',
+    background: '#364d79',
+  };
 const LayoutClient = () => {
   return (
     <div>
@@ -74,6 +82,22 @@ const LayoutClient = () => {
                     </div>
                 </div>
                 </div>
+            </div>
+            <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
+                <Carousel autoplay>
+                    <div>
+                    <h3 style={contentStyle}><img src="http://picsum.photos/1216/160" /></h3>
+                    </div>
+                    <div>
+                    <h3 style={contentStyle}><img src="http://picsum.photos/1215/160" /></h3>
+                    </div>
+                    <div>
+                    <h3 style={contentStyle}><img src="http://picsum.photos/1217/160" /></h3>
+                    </div>
+                    <div>
+                    <h3 style={contentStyle}><img src="http://picsum.photos/1214/160" /></h3>
+                    </div>
+                </Carousel>
             </div>
         </header>
 
