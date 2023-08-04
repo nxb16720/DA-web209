@@ -1,5 +1,7 @@
 import {Outlet ,Link} from 'react-router-dom'
+
 import DropdownCate from '../features/category/components/Dropdown'
+
 import { Carousel } from 'antd';
 
 const contentStyle: React.CSSProperties = {
@@ -9,6 +11,7 @@ const contentStyle: React.CSSProperties = {
     textAlign: 'center',
     background: '#364d79',
   };
+
 const LayoutClient = () => {
   return (
     <div>
@@ -45,7 +48,9 @@ const LayoutClient = () => {
                         </li>
 
                         <li>
+
                         <Link to='blog' className="text-gray-500 transition hover:text-gray-500/75"><DropdownCate/></Link>
+
                         </li>
                     </ul>
                     </nav>
@@ -101,7 +106,9 @@ const LayoutClient = () => {
             </div>
         </header>
 
+
         <main className='min-h-[600px]'>
+
             <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8"><Outlet/></div>
         </main>
 

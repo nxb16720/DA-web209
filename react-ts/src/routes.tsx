@@ -2,12 +2,15 @@ import {Navigate,createBrowserRouter} from 'react-router-dom'
 import LayoutClient from './layout/LayoutClient'
 import LayoutAdmin from './layout/LayoutAdmin'
 import ProductPage from './features/product/pages/ProductPage'
+
 import Dashboard from './features/product/pages/Dashboard'
 import ProductManagement from './features/product/pages/ProductManagement'
 import CategoryManagement from './features/category/pages/CategoryManagement'
+
 import ProductDetail from './features/product/pages/ProductDetail'
 import CategoryDetail from './features/category/pages/CategoryDetail'
 import HomePage from './features/home/page/HomePage'
+
 export const routes = createBrowserRouter([
     {
         path:'/',

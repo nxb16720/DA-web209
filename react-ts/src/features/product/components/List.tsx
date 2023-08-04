@@ -1,3 +1,4 @@
+
 import Skeleton from "react-loading-skeleton";
 import { useGetProductsQuery } from "../../../api/productApi"
 import ProductItem from "./Item"
@@ -15,6 +16,7 @@ const ProductList = () => {
             )
         }
     };
+
     return (
       <>
       <header className="pb-4 pt-2">
