@@ -2,26 +2,30 @@ import { Link } from "react-router-dom"
 
 import { Button } from "../../../component"
 import {message, Popconfirm} from 'antd'
-import { useAddCategoryMutation, useRemoveCategoryMutation, useUpdateCategoryMutation } from "../../../api/categoryApi"
+import { useRemoveCategoryMutation } from "../../../api/categoryApi"
+import { AiOutlineLoading } from "react-icons/ai";
 type Props = {
     items: any
 }
 
-const text = 'Are you sure to delete this task?';
-const description = 'Delete the task';
+const text = 'Bạn có chắc muốn xóa?';
+const description = 'Xóa danh mục';
 
 
 const TableC = ({items}: Props) => {
-    const [addCategory] = useAddCategoryMutation()
-    const [updateCategory] = useUpdateCategoryMutation()
-    const [removeCategory] = useRemoveCategoryMutation()
+
+
+    const [removeCategory,{isLoading:removeIsLoading}] = useRemoveCategoryMutation()
     const confirm = (id:any) => {
-        removeCategory(id)
-      message.info('Clicked on Yes.');
+        removeCategory(id).unwrap().then(()=>{
+
+            message.info('Xóa thành công.');
+        })
+      
     };
   return (
     <div>
-        <div className="p-2"><Button type="primary" onClick={()=>addCategory({name:"Category test"})}>Add</Button></div>
+        <div className="p-2"><Button type="primary"><Link to={`add`}>Add</Link></Button></div>
         <div className="overflow-x-auto">
         <table className="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
             <thead className="ltr:text-left rtl:text-right">
@@ -59,7 +63,10 @@ const TableC = ({items}: Props) => {
                                         okText="Yes"
                                         cancelText="No"
                                     >
-                                        <Button type="danger">Delete</Button>
+                                        <Button type="danger">
+                                            {removeIsLoading ? (<AiOutlineLoading className="animate-spin" />) : ("Delete")}
+                                            
+                                        </Button>
                                     </Popconfirm>
                                     
                                     </div>
