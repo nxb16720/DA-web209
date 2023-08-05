@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
+import { pause } from '../utils/pause';
 interface ICategory {
     id?: number,
     name: string,
@@ -7,7 +8,11 @@ const categoryApi = createApi({
     reducerPath: "category",
     tagTypes: ['Category'],
     baseQuery: fetchBaseQuery({
-        baseUrl: "http://localhost:3000"
+        baseUrl: "http://localhost:3000",
+        fetchFn: async (...args) => {
+            await pause(1000);
+            return fetch(...args)
+        }
     }),
     endpoints: (builder) => ({
         getCategories: builder.query<ICategory[], void>({

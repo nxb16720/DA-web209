@@ -1,26 +1,30 @@
 import { Link } from "react-router-dom"
-import { useAddProductMutation, useRemoveProductMutation, useUpdateProductMutation } from "../../../api/productApi"
+import { useRemoveProductMutation } from "../../../api/productApi"
 import { Button } from "../../../component"
 import {message, Popconfirm} from 'antd'
+import { AiOutlineLoading } from "react-icons/ai";
+// import { useGetCategoriesQuery} from "../../../api/categoryApi";
 type Props = {
     items: any
 }
 
-const text = 'Are you sure to delete this task?';
-const description = 'Delete the task';
+const text = 'Bạn có chắc muốn xóa?';
+const description = 'Xóa sản phẩm';
 
 
 const Table = ({items}: Props) => {
-    const [addProduct] = useAddProductMutation()
-    const [updateProduct] = useUpdateProductMutation()
-    const [removeProduct] = useRemoveProductMutation()
+    const [removeProduct,{isLoading:isLoadingRemoveProduct}] = useRemoveProductMutation()
+    // const {data:category} = useGetCategoriesQuery()
+
     const confirm = (id:any) => {
-        removeProduct(id)
-      message.info('Clicked on Yes.');
+        removeProduct(id).unwrap().then(()=>{
+            message.info('Xóa thành công.');
+        })
+      
     };
   return (
     <div>
-        <div className="p-2"><Button type="primary" onClick={()=>addProduct({name:"Product test",price:1234})}>Add</Button></div>
+        <div className="p-2"><Button type="primary"><Link to={`add`}>Add</Link></Button></div>
         <div className="overflow-x-auto">
         <table className="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
             <thead className="ltr:text-left rtl:text-right">
@@ -34,9 +38,9 @@ const Table = ({items}: Props) => {
                 <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
                 Price
                 </th>
-                <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                {/* <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
                 Category
-                </th>
+                </th> */}
                 <th className="px-4 py-2">Action</th>
             </tr>
             </thead>
@@ -49,7 +53,7 @@ const Table = ({items}: Props) => {
                                 </td>
                                 <td className="whitespace-nowrap px-4 py-2 text-gray-700">{item?.name}</td>
                                 <td className="whitespace-nowrap px-4 py-2 text-gray-700">${item?.price}</td>
-                                <td className="whitespace-nowrap px-4 py-2 text-gray-700">Cate</td>
+                                {/* <td className="whitespace-nowrap px-4 py-2 text-gray-700">{item.categoryId}</td> */}
                                 <td className="whitespace-nowrap px-4 py-2 grid grid-cols-2 gap-2">
                                 <div className="grid justify-items-end"><Link
                                     to={`${item.id}/update`}
@@ -66,7 +70,13 @@ const Table = ({items}: Props) => {
                                         okText="Yes"
                                         cancelText="No"
                                     >
-                                        <Button type="danger">Delete</Button>
+                                        <Button type="danger">
+                                        {isLoadingRemoveProduct ? (
+                            <AiOutlineLoading className="animate-spin" />
+                        ) : (
+                            "Delete"
+                        )}
+                                        </Button>
                                     </Popconfirm>
                                     
                                     </div>

@@ -5,7 +5,6 @@ import { useGetCategoryByIdQuery } from '../../../api/categoryApi'
 const CategoryDetail = () => {
     const { id } = useParams()
     const { data } = useGetCategoryByIdQuery(id)
-    console.log(data);
 
     return (
         <div>
@@ -14,7 +13,7 @@ const CategoryDetail = () => {
 
                 {data?.products?.map((item: any) => {
                     return (
-                        <a href={`http://localhost:5173/products/${item.id}`} className="group block">
+                        <a href={`http://localhost:5173/products/${item.id}`} className="group block" key={item.id}>
                             <div className="relative h-[350px] sm:h-[450px]">
                                 <img
                                     src="https://images.unsplash.com/photo-1592921870789-04563d55041c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"

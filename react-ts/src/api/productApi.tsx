@@ -1,15 +1,21 @@
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
+import { pause } from '../utils/pause';
 interface IProduct {
     id?: number,
     name: string,
     price: number;
+    productId?: number
 }
 const productApi = createApi({
     reducerPath: "products",
     tagTypes: ['Product'],
     baseQuery: fetchBaseQuery({
-        baseUrl: "http://localhost:3000"
+        baseUrl: "http://localhost:3000",
+        fetchFn: async (...args) => {
+            await pause(1000);
+            return fetch(...args)
+        }
     }),
     endpoints: (builder) => ({
         getProducts: builder.query<IProduct[], void>({
