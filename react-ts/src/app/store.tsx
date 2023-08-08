@@ -14,6 +14,7 @@ import storage from 'redux-persist/lib/storage';
 
 import productApi, { productReducer } from "../api/productApi";
 import categoryApi, { categoryReducer } from "../api/categoryApi";
+import authApi from "../api/authApi";
 
 
 const persistConfig = {
@@ -24,13 +25,14 @@ const persistConfig = {
 const rootReducer = combineReducers({
     products: productReducer,
 
-    category:categoryReducer
+    category: categoryReducer,
+    [authApi.reducerPath]: authApi.reducer
 
-    // counter: counterReducer,
     // cart: cartReducer
 })
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 
+const middleware = [productApi.middleware, categoryApi.middleware, authApi.middleware]
 export const store = configureStore({
     reducer: persistedReducer,
     middleware: (getDefaultMiddleware) =>
@@ -39,7 +41,7 @@ export const store = configureStore({
                 ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
             },
 
-        }).concat(productApi.middleware,categoryApi.middleware)
+        }).concat(...middleware)
 
 })
 
