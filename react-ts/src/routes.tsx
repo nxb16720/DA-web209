@@ -16,8 +16,10 @@ import CategoryAdd from './features/category/pages/CategoryAdd'
 import CategoryUpdate from './features/category/pages/CategoryUpdate'
 import AboutPage from './features/home/page/AboutPage'
 import PageNotFound from './features/home/page/PageNotFound'
+
 import Signin from './features/auth/signin'
 import Signup from './features/auth/signup'
+
 
 export const routes = createBrowserRouter([
     {
@@ -29,8 +31,10 @@ export const routes = createBrowserRouter([
             { path: 'products', element: <ProductPage /> },
             { path: 'products/:id', element: <ProductDetail /> },
             { path: '/:id/category', element: <CategoryDetail /> },
+
             { path: 'signin', element: <Signin /> },
             { path: 'signup', element: <Signup /> },
+
         ]
     },
     {
