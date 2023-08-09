@@ -1,4 +1,4 @@
-import { Navigate, createBrowserRouter } from 'react-router-dom'
+import { Navigate, createBrowserRouter, useNavigate, Outlet } from 'react-router-dom'
 import LayoutClient from './layout/LayoutClient'
 import LayoutAdmin from './layout/LayoutAdmin'
 import ProductPage from './features/product/pages/ProductPage'
@@ -19,6 +19,20 @@ import PageNotFound from './features/home/page/PageNotFound'
 import Signin from './features/auth/signin'
 import Signup from './features/auth/signup'
 
+import { useEffect } from "react";
+const PrivateRoute = ({ isAuth }: any) => {
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (!isAuth) {
+            navigate("/signin");
+        }
+    }, [isAuth]);
+
+    return isAuth ? <Outlet /> : <Navigate to="/signin" />;
+};
+
+
 export const routes = createBrowserRouter([
     {
         path: '/',
@@ -33,19 +47,24 @@ export const routes = createBrowserRouter([
             { path: 'signup', element: <Signup /> },
         ]
     },
+
     {
         path: '/admin',
-        element: <LayoutAdmin />,
+        element: <PrivateRoute isAuth={true} />,
         children: [
-            { index: true, element: <Navigate to='dashboard' /> },
-            { path: 'dashboard', element: <Dashboard /> },
-            { path: 'products', element: <ProductManagement /> },
-            { path: 'products/add', element: <AdminProductAdd /> },
-            { path: 'products/:id/update', element: <AdminProductUpdate /> },
-            { path: 'category', element: <CategoryManagement /> },
-            { path: 'category/add', element: <CategoryAdd /> },
-            { path: 'category/:id/update', element: <CategoryUpdate /> },
-
+            {
+                element: <LayoutAdmin />,
+                children: [
+                    { index: true, element: <Navigate to='dashboard' /> },
+                    { path: 'dashboard', element: <Dashboard /> },
+                    { path: 'products', element: <ProductManagement /> },
+                    { path: 'products/add', element: <AdminProductAdd /> },
+                    { path: 'products/:id/update', element: <AdminProductUpdate /> },
+                    { path: 'category', element: <CategoryManagement /> },
+                    { path: 'category/add', element: <CategoryAdd /> },
+                    { path: 'category/:id/update', element: <CategoryUpdate /> },
+                ]
+            }
         ]
     },
     { path: "*", element: <PageNotFound /> }
