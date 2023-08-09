@@ -1,6 +1,8 @@
+
 import { Outlet, Link, useNavigate, } from 'react-router-dom'
 import DropdownCate from '../features/category/components/Dropdown'
 import { Alert, Carousel, Input } from 'antd';
+
 import { useGetProductsQuery } from '../api/productApi';
 
 
@@ -15,6 +17,7 @@ const contentStyle: React.CSSProperties = {
 };
 
 const LayoutClient = () => {
+
     const { data: products } = useGetProductsQuery()
     const navigate = useNavigate()
     const onSearch = (value: string) => {
@@ -117,6 +120,7 @@ const LayoutClient = () => {
                             <h3 style={contentStyle}><img src="http://picsum.photos/1214/160" /></h3>
                         </div>
                     </Carousel>
+
                 </div>
             </header>
 
